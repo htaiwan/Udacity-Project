@@ -11803,7 +11803,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11881,23 +11881,23 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">prices</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
 <span class="c1"># TODO: Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prices</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
 <span class="c1"># TODO: Mean price of the data</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
 <span class="c1"># TODO: Median price of the data</span>
-<span class="n">median_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
 <span class="c1"># Show the calculated statistics</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -11928,7 +11928,7 @@ Minimum price: $105000.00
 Maximum price: $1024800.00
 Mean price: $454342.94
 Median price $438900.00
-Standard deviation of prices: $165340.28
+Standard deviation of prices: $165171.13
 </pre>
 </div>
 </div>
@@ -13877,12 +13877,18 @@ SKAo+EREJFAUfCIiEigKPhERCZT/B7qJIbJxh+L3AAAAAElFTkSuQmCC
 <li>kernel(Linear, polynomial),gamma(0.1, 1, 10)。</li>
 <li>kernel和gamma形成6組不同的超參數組合。</li>
 <li>將這6組分別用training data進行training。</li>
-<li>再將訓練好的模型分別利用validation data進行F1 score的評分。</li>
-<li>取出分數最高的那一組超參數組合，再利用test data進行最後的測試。</li>
+<li>再將訓練好的模型分別利用validation data進行F1 score的評分。
+<font color="red"> </li>
+<li><del>取出分數最高的那一組超參數組合，再利用test data進行最後的測試。</del></li>
+<li>然後Grid search，會根據所提供estimator，找出表現最佳的超參數組合(分數最高或者最低)<ul>
+<li>Estimator that was chosen by the search, i.e. estimator which gave highest score (or smallest loss if specified) on the left out data.
+<end> <end></li>
+</ul>
+</li>
 </ol>
 </li>
 </ul>
-<end>
+
 </div>
 </div>
 </div>
@@ -14140,10 +14146,21 @@ Predicted selling price for Client 3&#39;s home: $890,400.00
 <p><font color="blue"></p>
 <h3 id="&#38382;&#39064;-10---&#22238;&#31572;&#65306;">&#38382;&#39064; 10 - &#22238;&#31572;&#65306;<a class="anchor-link" href="#&#38382;&#39064;-10---&#22238;&#31572;&#65306;">&#182;</a></h3><ul>
 <li>客戶1: 415,100，客戶2: 236,765，客戶3: 890,400。</li>
-<li>我認為模型所預測出來的價格算是合理。<ul>
+<li><p>我認為模型所預測出來的價格算是合理。</p>
+<ul>
 <li>3間房子所預測出來的房價皆落於分析數據中的最大值跟最小值間，至少表示模型所預測的房價不是極端的不合理價。</li>
 <li>分析數據中的平均值跟中位數差異不大，表示先前所提供的訓練數據中應該沒有極端的不合理價，影響模型的訓練。</li>
-<li>3間房的平均價位約在514088，也落在合理的平均值跟標準差之間(454342-165340 ~ 454342+165340)。</li>
+<li><p>3間房的平均價位約在514088，也落在合理的平均值跟標準差之間(454342-165340 ~ 454342+165340)。</p>
+<p><font color="red"></p>
+</li>
+<li>根據我在問題1的推測:<ul>
+<li>'RM'(房間數量)越大，'MEDV'增加: 客戶3的房間數最高，房子價錢應該要升高。</li>
+<li>'LSTAT'(社區貧困指數)越大，'MEDV'減少:客戶2的房子所在區域的社區貧困指數最高，房子價錢應該要降低。</li>
+<li>'PTRATIO'(學生老師比例)越大，'MEDV'減少: 表示每個家庭的小孩數量多，因此家庭的負擔也比較大，相對對於購買房子的支出也比會比較低，客戶2的房子所在區域的社區貧困指數最高，房子價錢應該要降低。</li>
+<li>跟之前的推測相符合，客戶3房子的價錢應該要最高，客戶2房子的價錢應該要最低
+<font></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -14287,7 +14304,7 @@ Range in prices: $145,522.22
 <p><font color="blue"></p>
 <h3 id="&#38382;&#39064;-12---&#22238;&#31572;&#65306;">&#38382;&#39064; 12 - &#22238;&#31572;&#65306;<a class="anchor-link" href="#&#38382;&#39064;-12---&#22238;&#31572;&#65306;">&#182;</a></h3><ul>
 <li>最小值391,183 最大值420,622 平均值 409,566</li>
-<li>10次的預測的結果的變化幅度大約1.08% (1.026-0.95)，預測結果我認爲是有一致性。<ul>
+<li>10次的預測的結果的變化幅度大約<del>1.08%</del> 7.6% (1.026-0.95)，我覺這樣的變化幅度還算穩定，預測結果是有一致性。<ul>
 <li>0.95(391,183/409,566) ~ 1.026 (420,622/409,566)</li>
 </ul>
 </li>
