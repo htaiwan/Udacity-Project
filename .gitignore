@@ -102,3 +102,13 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+3. dog-project/bottleneck_features/DogVGG19Data.npz
+3. dog-project/bottleneck_features/DogXceptionData.npz
+3. dog-project/images/cat_1.jpg
+3. dog-project/images/cat_2.jpg
+3. dog-project/images/dog_1.jpg
+3. dog-project/images/dog_2.jpg
+3. dog-project/images/human_1.jpg
+3. dog-project/images/human_2.jpg
+3. dog-project/saved_models/weights.best.VGG19.hdf5
+3. dog-project/saved_models/weights.best.Xception.hdf5
